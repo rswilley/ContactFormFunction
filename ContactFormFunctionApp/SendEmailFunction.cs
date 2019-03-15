@@ -21,30 +21,19 @@ namespace ContactFormFunctionApp
                 var requestBody = new StreamReader(req.Body).ReadToEnd();
                 var input = JsonConvert.DeserializeObject<SendEmailInput>(requestBody);
 
-                if (!IsValidateInput(input))
-                    return new BadRequestResult();
+                var interactor = new SendEmailInteractor();
+                var response = interactor.SendEmail(input);
 
-                var config = new Configuration();
-                EmailFacade.SendEmail(input, config);
+                if (response.IsRequestValid)
+                    return new OkResult();
 
-                return new OkResult();
+                return new BadRequestResult();
             }
             catch (Exception e)
             {
                 log.Error("SendEmail HTTP trigger function threw an error.", e);
                 throw;
             }
-        }
-
-        private static bool IsValidateInput(SendEmailInput input)
-        {
-            if (string.IsNullOrEmpty(input.Name) || 
-                string.IsNullOrEmpty(input.Email) ||
-                string.IsNullOrEmpty(input.Subject) || 
-                string.IsNullOrEmpty(input.Message))
-                return false;
-
-            return true;
         }
     }
 }
