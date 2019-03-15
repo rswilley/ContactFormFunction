@@ -17,7 +17,7 @@ POST the following JSON to the Azure Function's endpoint:
 
 ```json
 {
-  "fromDomain": "yourdomain.com",
+  "fromDomain": "domain1.com",
   "name": "Sender's Name",
   "email": "sendersemail@theirdomain.com",
   "subject": "Email Subject",
@@ -35,7 +35,19 @@ Email will end up being a reply-to address.
 - EmailPort - email server's port
 - SmtpUsername - smtp username
 - SmtpPassword - smtp password
-- FromEmail - your verified sender email address (will be the From Address in the email)
-- FromName - whatever you want the from name to be
-- SubjectPrefix - email's subject prefix if you want one (I use it for differentiating my sites. "[domain.com] -" subject prefix would look like "[domain.com] - Actual Email Subject"
+- FromEmail - your verified sender email address (ex: mail@mycontactform.com)
+- FromName - whatever you want the from name to be (ex: Contact Form)
+- SubjectPrefix - email's subject prefix if you want one (ex: "[mysite.com] -" )
 - ValidDomains - a list of valid domains with email addresses. format: domain1.com|recipient@domain1.com;domain2.com|recipient@domain2.com
+
+## Final Email Example
+
+```html
+From: Contact Form <mail@mycontactform.com>
+To: robert@rswilley.com
+Reply-To: sendersemail@theirdomain.com
+Date: Fri, 15 Mar 2019 10:31:00 +0000
+Subject: [mysite.com] - Email Subject
+
+<p>A great message.</p>
+```
