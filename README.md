@@ -1,8 +1,6 @@
 # ContactFormFunction
 Azure Functions reusable Contact Form Function App
 
-*This README is a work in progress...*
-
 I built this because I have multiple sites I manage with contact forms. 
 
 Since a contact form is such a basic component of all websites I figured this would be a perfect use case for my first serverless function.
